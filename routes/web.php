@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Spatie\Sitemap\SitemapGenerator;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
     // return view('welcome');
+});
+
+Route::get('sitemap', function(){
+    SitemapGenerator::create('https://example.com')->writeToFile('sitemap.xml');
+    return 'sitemap created';
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
